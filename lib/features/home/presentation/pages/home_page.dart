@@ -1,3 +1,6 @@
+import 'package:baseApp/common/slidable_widget/slidable_action_pane.dart';
+import 'package:baseApp/common/slidable_widget/slidable_widget.dart';
+import 'package:baseApp/common/slidable_widget/slide_action.dart';
 import 'package:baseApp/core/di/di.dart';
 import 'package:baseApp/common/text_style/app_text_style.dart';
 import 'package:baseApp/features/home/presentation/cubit/home_cubit.dart';
@@ -38,18 +41,46 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state) {
           return ListView.separated(
               itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Text(
-                      state.users[index].name,
-                      style: AppTextStyles.textStyle16,
-                    ),
-                    Text(
-                      state.users[index].email,
-                      style: AppTextStyles.textStyle13
-                          .copyWith(fontWeight: FontWeight.w700),
+                return Slidable(
+                  actionExtentRatio: 0.25,
+                  actionsPane: SlidableDrawerActionPane(),
+                  actionsLeft: [
+                    IconSlideAction(
+                      color: Colors.red,
+                      iconWidget: Icon(Icons.delete),
+                      onTap: () => logger.d('Xoá'),
+                      borderRadius: BorderRadius.circular(10),
+                      closeOnTap: true,
                     ),
                   ],
+                  actionsRight: [
+                    IconSlideAction(
+                      color: Colors.green,
+                      iconWidget: Icon(Icons.edit),
+                      onTap: () => logger.d('sửa'),
+                      borderRadius: BorderRadius.circular(10),
+                      closeOnTap: true,
+                    ),
+                  ],
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    color: Colors.grey,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          state.users[index].name,
+                          style: AppTextStyles.textStyle16,
+                        ),
+                        Text(
+                          state.users[index].email,
+                          style: AppTextStyles.textStyle13
+                              .copyWith(fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
               separatorBuilder: (context, index) => SizedBox(

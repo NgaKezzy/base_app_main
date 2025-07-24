@@ -39,29 +39,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ToastificationWrapper(
-      child: OverlaySupport.global(
-        child: ScreenUtilInit(
-          designSize: const Size(375, 812), // Kích thước design của bạn
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (context, child) {
-            return MaterialApp.router(
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('en'),
-                Locale('vi'),
-              ],
-              locale: const Locale('en'),
-              routerConfig: AppRoutes().router,
-            );
-          },
-        ),
+    return OverlaySupport.global(
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812), // Kích thước design của bạn
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp.router(
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en'),
+              Locale('vi'),
+            ],
+            locale: const Locale('en'),
+            routerConfig: AppRoutes().router,
+          );
+        },
       ),
     );
   }
