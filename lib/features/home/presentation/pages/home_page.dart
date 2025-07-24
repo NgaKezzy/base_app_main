@@ -1,3 +1,4 @@
+import 'package:baseApp/common/shimmer/shimmer.dart';
 import 'package:baseApp/common/slidable_widget/slidable_action_pane.dart';
 import 'package:baseApp/common/slidable_widget/slidable_widget.dart';
 import 'package:baseApp/common/slidable_widget/slide_action.dart';
@@ -39,6 +40,13 @@ class _HomePageState extends State<HomePage> {
       ),
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
+          if (state.status == HomeStatus.loading) {
+            return Center(
+              child: Shimmer(
+                child: SizedBox(width: 100, height: 100),
+              ),
+            );
+          }
           return ListView.separated(
               itemBuilder: (context, index) {
                 return Slidable(

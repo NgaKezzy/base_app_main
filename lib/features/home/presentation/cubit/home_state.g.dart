@@ -9,6 +9,8 @@ part of 'home_state.dart';
 abstract class _$HomeStateCWProxy {
   HomeState users(List<UserInfo> users);
 
+  HomeState status(HomeStatus status);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `HomeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -17,6 +19,7 @@ abstract class _$HomeStateCWProxy {
   /// ````
   HomeState call({
     List<UserInfo> users,
+    HomeStatus status,
   });
 }
 
@@ -30,6 +33,9 @@ class _$HomeStateCWProxyImpl implements _$HomeStateCWProxy {
   HomeState users(List<UserInfo> users) => this(users: users);
 
   @override
+  HomeState status(HomeStatus status) => this(status: status);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `HomeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -39,12 +45,17 @@ class _$HomeStateCWProxyImpl implements _$HomeStateCWProxy {
   /// ````
   HomeState call({
     Object? users = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
   }) {
     return HomeState(
       users: users == const $CopyWithPlaceholder()
           ? _value.users
           // ignore: cast_nullable_to_non_nullable
           : users as List<UserInfo>,
+      status: status == const $CopyWithPlaceholder()
+          ? _value.status
+          // ignore: cast_nullable_to_non_nullable
+          : status as HomeStatus,
     );
   }
 }

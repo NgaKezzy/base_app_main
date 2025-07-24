@@ -12,13 +12,21 @@ class HomeCubit extends Cubit<HomeState> {
   GetAllUserUsecase getAllUserUsecase;
 
   Future<void> getUsers() async {
-    Loading.showLoading();
-    final response = await getAllUserUsecase.call(NoParams());
-    Loading.hideLoading();
+    // Loading.showLoading();
+    Future.delayed(
+      const Duration(seconds: 2),
+      () async {
+        emit(state.copyWith(status: HomeStatus.loading));
+        final response = await getAllUserUsecase.call(NoParams());
+        // Loading.hideLoading();
 
-    response.fold(
-      (failure) => emit(state.copyWith(users: [])),
-      (users) => emit(state.copyWith(users: users)),
+        response.fold(
+          (failure) =>
+              emit(state.copyWith(users: [], status: HomeStatus.failure)),
+          (users) =>
+              emit(state.copyWith(users: users, status: HomeStatus.success)),
+        );
+      },
     );
   }
 }
