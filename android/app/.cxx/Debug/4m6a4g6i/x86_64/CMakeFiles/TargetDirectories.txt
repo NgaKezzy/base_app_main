@@ -1,0 +1,2 @@
+/Users/ngakezzy/work_space/BaseApp/android/app/.cxx/Debug/4m6a4g6i/x86_64/CMakeFiles/edit_cache.dir
+/Users/ngakezzy/work_space/BaseApp/android/app/.cxx/Debug/4m6a4g6i/x86_64/CMakeFiles/rebuild_cache.dir
